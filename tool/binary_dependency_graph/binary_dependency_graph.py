@@ -5,7 +5,7 @@ import simuvex
 import time
 
 from utils import *
-from cpfs import environment, file, socket, semantic, setter_getter
+from cpfs import environment, nvram, file, socket, semantic, setter_getter
 from bdp_enum import *
 
 sys.path.append(os.path.abspath(os.path.join(dirname(abspath(__file__)), '../../../tool')))
@@ -304,7 +304,7 @@ class BinaryDependencyGraph:
 
         self._enabled_cpfs = cpfs
         if not cpfs:
-            self._enabled_cpfs = [environment.Environment,  file.File, socket.Socket,
+            self._enabled_cpfs = [environment.Environment,  nvram.Nvram, file.File, socket.Socket,
                                   setter_getter.SetterGetter, semantic.Semantic]
 
         self._seed_bins = self._update_projects(self._seed_bins)
