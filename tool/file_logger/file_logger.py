@@ -101,7 +101,7 @@ class FileLogger:
 
             bins[node.bin] = {
                 'tot_env': str(n_env),
-                'tot_nvram': str(n_nvram)
+                'tot_nvram': str(n_nvram),
                 'tot_sem': str(n_semantic),
                 'tot_socket': str(n_socket),
                 'tot_file': str(n_file),
