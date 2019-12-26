@@ -14,7 +14,7 @@ from os.path import dirname, abspath
 import threading
 
 from binary_dependency_graph.utils import *
-from binary_dependency_graph.plugins import environment, semantic, file, socket, setter_getter
+from binary_dependency_graph.plugins import environment, nvram, semantic, file, socket, setter_getter
 from binary_dependency_graph.binary_dependency_graph import BinaryDependencyGraph, Role, BuffType, RoleInfo
 import parser_finder.find_parser
 
@@ -118,7 +118,7 @@ class AlertTest:
                 new_b = '../../../' + b[2:]
             filtered_bins.append(new_b)
         bins = filtered_bins
-        plugins = [environment.Environment, file.File, socket.Socket, setter_getter.SetterGetter, semantic.Semantic]
+        plugins = [environment.Environment, nvram.Nvram, file.File, socket.Socket, setter_getter.SetterGetter, semantic.Semantic]
         # using less strings makes the analysis way faster
         bdg = BinaryDependencyGraph(self.fw_directory, bins, h_keywords=pf_str,
                                           ignore_bins=self.ignore,

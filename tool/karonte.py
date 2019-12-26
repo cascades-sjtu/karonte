@@ -4,7 +4,7 @@ import angr
 import logging
 from bar_logger import bar_logger
 from binary_dependency_graph import BinaryDependencyGraph
-from binary_dependency_graph.cpfs import environment, semantic, file, socket, setter_getter
+from binary_dependency_graph.cpfs import environment, nvram, semantic, file, socket, setter_getter
 from border_binaries_finder import BorderBinariesFinder
 from bug_finder import BugFinder
 from file_logger import FileLogger
@@ -66,7 +66,7 @@ class Karonte:
         # starting the analysis with less strings makes the analysis faster
         pf_str = BorderBinariesFinder.get_network_keywords(end=N_TYPE_DATA_KEYS)
 
-        cpfs = [environment.Environment, file.File, socket.Socket, setter_getter.SetterGetter, semantic.Semantic]
+        cpfs = [environment.Environment, nvram.Nvram, file.File, socket.Socket, setter_getter.SetterGetter, semantic.Semantic]
         bdg = BinaryDependencyGraph(self._config, self._border_bins, self._fw_path,
                                     init_data_keys=pf_str, cpfs=cpfs, logger_obj=log)
         bdg.run()

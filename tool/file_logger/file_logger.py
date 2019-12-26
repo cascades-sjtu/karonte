@@ -83,6 +83,7 @@ class FileLogger:
         for node in bdg.nodes:
             stats = [(x[RoleInfo.DATAKEY], x[RoleInfo.CPF]) for y in node.role_info.values() for x in y]
             n_env = len([s for s in stats if s[1] == 'environment'])
+            n_nvram = len([s for s in stats if s[1] == 'nvram'])
             n_semantic = len([s for s in stats if s[1] == 'semantic'])
             n_socket = len([s for s in stats if s[1] == 'socket'])
             n_file = len([s for s in stats if s[1] == 'file'])
@@ -91,6 +92,7 @@ class FileLogger:
 
             un_stats = list(set([(x[RoleInfo.DATAKEY], x[RoleInfo.CPF]) for y in node.role_info.values() for x in y]))
             un_n_env = len([s for s in un_stats if s[1] == 'environment'])
+            un_n_nvram = len([s for s in un_stats if s[1] == 'nvram'])
             un_n_semantic = len([s for s in un_stats if s[1] == 'semantic'])
             un_n_socket = len([s for s in un_stats if s[1] == 'socket'])
             un_n_file = len([s for s in un_stats if s[1] == 'file'])
@@ -99,6 +101,7 @@ class FileLogger:
 
             bins[node.bin] = {
                 'tot_env': str(n_env),
+                'tot_nvram': str(n_nvram)
                 'tot_sem': str(n_semantic),
                 'tot_socket': str(n_socket),
                 'tot_file': str(n_file),
@@ -106,6 +109,7 @@ class FileLogger:
                 'tot_data_key': str(tot_key),
 
                 'unique_env': str(un_n_env),
+                'unique_nvram': str(un_n_nvram),
                 'unique_sem': str(un_n_semantic),
                 'unique_socket': str(un_n_socket),
                 'unique_file': str(un_n_file),

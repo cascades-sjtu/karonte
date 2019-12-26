@@ -187,7 +187,7 @@ class Nvram(CPF):
 
     def discover_new_binaries(self):
         """
-        Discovers new binaries within the firmware sample that exchange data through the OS environment with the
+        Discovers new binaries within the firmware sample that exchange data through the OS nvram with the
         current binary
 
         :return: a list of binaries
