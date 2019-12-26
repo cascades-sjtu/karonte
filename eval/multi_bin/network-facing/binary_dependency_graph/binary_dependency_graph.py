@@ -9,7 +9,7 @@ import struct
 import sys
 from os.path import dirname, abspath
 import json
-from plugins import environment, file, socket, semantic, setter_getter
+from plugins import environment, nvram, file, socket, semantic, setter_getter
 from bdp_enum import *
 
 sys.path.append(os.path.abspath(os.path.join(dirname(abspath(__file__)), '../../../tool')))
@@ -306,7 +306,7 @@ class BinaryDependencyGraph:
         self._enabled_plugins = plugins
 
         if not plugins:
-            self._enabled_plugins = [environment.Environment,  file.File, socket.Socket, setter_getter.SetterGetter, semantic.Semantic]
+            self._enabled_plugins = [environment.Environment,  nvram.Nvram, file.File, socket.Socket, setter_getter.SetterGetter, semantic.Semantic]
 
         self._prepare_projects()
 
@@ -919,6 +919,6 @@ if __name__ == '__main__':
         print "Usage " + sys.argv[0] + " config"
         sys.exit(0)
 
-    plugins = [environment.Environment, file.File, socket.Socket, setter_getter.SetterGetter, semantic.Semantic]
+    plugins = [environment.Environment, nvram.Nvram, file.File, socket.Socket, setter_getter.SetterGetter, semantic.Semantic]
     bdg = BinaryDependencyGraph(config, plugins=plugins)
     bdg.run()
