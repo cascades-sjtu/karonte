@@ -353,6 +353,21 @@ def get_env(p):
     return summarized_f
 
 
+def get_nvram(p):
+    """
+    Gets and summarizes heap nvram functions within a Linux binary
+
+    :param p: angr project
+    :return: function summaries
+    """
+
+    addrs = get_dyn_sym_addrs(p, ['nvram_safe_set', 'nvram_safe_get'])
+    summarized_f = {}
+    for f in addrs:
+        summarized_f[f] = summary_functions.nvram
+    return summarized_f
+
+
 def get_indirect_str_refs(p, cfg, str_addrs):
     """
     Gets indirect string references

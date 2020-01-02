@@ -460,6 +460,90 @@ def env(_core, call_site_path, plt_path):
 
     _restore_caller_regs(_core, call_site_path, plt_path)
 
+
+#
+# Nvram function
+#
+nvram_var = {}
+
+
+def _safe_set_nvram(_core, _, plt_path):
+    """
+    set nvram function summary
+
+    :param _core: core taint engine
+    :param plt_path: path to the plt (i.e., call_site.step())
+    :return: None
+    """
+
+    global nvram_var
+    p = _core.p
+
+    plt_path_cp = plt_path.copy(copy_states=True)
+    plt_state_cp = plt_path_cp.active[0]
+
+    key = getattr(plt_state_cp.regs, arg_reg_name(p, 0))
+    nvram_var[str(key)] = getattr(plt_state_cp.regs, arg_reg_name(p, 1))
+
+
+def _safe_get_nvram(_core, call_site_addr, plt_path):
+    """
+    nvram_safe_get function summary
+    :param _core: core taint engine
+    :param call_site_addr: call site angr path
+    :param plt_path: path to the plt (i.e., call_site.step())
+    :return: None
+    """
+
+    global nvram_var
+    p = _core.p
+
+    nvram_var_size = _core.taint_buf_size
+    plt_path_cp = plt_path.copy(copy_states=True)
+    plt_state_cp = plt_path_cp.active[0]
+
+    reg = getattr(plt_state_cp.regs, arg_reg_name(p, 0))
+    cnt_mem = _core.safe_load(plt_path_cp, reg)
+    key = str(reg)
+
+    # this info is passed by some user controllable source
+    if _core.is_tainted(reg, path=plt_path_cp) or _core.is_tainted(cnt_mem, path=plt_path_cp):
+        to_store = _core.get_sym_val(name=_core.taint_buf, bits=nvram_var_size)
+    # it was set before
+    elif key in nvram_var:
+        to_store = nvram_var[key]
+    # fresh symbolic var
+    else:
+        to_store = _core.get_sym_val(name="nvram_var", bits=nvram_var_size)
+
+    setattr(plt_path.active[0].regs, arg_reg_name(p, 0), claripy.BVV(nvram_var_size, _core.p.arch.bits))
+    _malloc(_core, call_site_addr, plt_path)
+    addr = getattr(plt_path.active[0].regs, arg_reg_name(p, 0))
+    plt_path.active[0].memory.store(addr, to_store)
+
+
+def nvram(_core, call_site_path, plt_path):
+    """
+    Summarize nvram functions (nvram_safe_get, and nvram_safe_set)
+    :param _core: core taint engin
+    :param call_site_path: call site angr path
+    :param plt_path: path to the plt (i.e., call_site.step())
+    :return:
+    """
+
+    fname = _get_function_name(plt_path.active[0].addr, _core.p)
+    if fname == 'nvram_safe_set':
+        print "Implement this Nvram function: " + fname
+        _safe_set_nvram(_core, call_site_path, plt_path)
+    elif fname == 'nvram_safe_get':
+        print "Implement this Nvram function: " + fname
+        _safe_get_nvram(_core, call_site_path, plt_path)
+    else:
+        print "Implement this Nvram function: " + fname
+
+    _restore_caller_regs(_core, call_site_path, plt_path)
+
+
 #
 # Numerical
 #
