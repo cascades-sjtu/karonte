@@ -13,7 +13,7 @@ import re
 
 M_SET_KEYWORD = 'nvram_safe_set'
 M_GET_KEYWORD = 'nvram_safe_get'
-LIB_KEYWORD = 'lib'
+LIB_KEYWORD = 'so'
 
 
 class Nvram(Plugin):
