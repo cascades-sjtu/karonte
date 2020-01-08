@@ -55,6 +55,7 @@ For each vendor, it shows:
 * Minimum analysis time
 * Maximum analysis time
 * Number of matching environment CPS
+* Number of matching nvram CPS
 * Number of semantic CPS matching
 * Average BDG cardinality,
 

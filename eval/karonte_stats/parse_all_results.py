@@ -148,6 +148,7 @@ for vendor in os.listdir('./results'):
     print "Avg analysis time: " + str(sum([x for x in avg_time]) / len(avg_time))
     print "Max analysis time: " + str(max_time)
     print "#Environment CPS: " + str(len([x for x in cpss if 'nvi' in x ]))
+    print "#Nvram CPS: " + str(len([x for x in cpss if 'vra' in x]))
     print "#Semantic CPS: " + str(len([x for x in cpss if 'ema' in x or 'er_ge' in x]))
     if sum([x for x in multi_bdg]) != 0:
         print "AVG Bdg cardinality: " + str(sum([x for x in multi_bdg]) / (len(multi_bdg) if multi_bdg != 0 else 1))

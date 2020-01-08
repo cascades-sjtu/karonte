@@ -219,7 +219,7 @@ class Nvram(CPF):
     def _search_in_bb(self, caller_node, role_function_info):
         """
         Finds whether the data-key is the called basic block.
-        As we know the protype of environment functions, if there's a string within the basic block, that's our
+        As we know the protype of nvram functions, if there's a string within the basic block, that's our
         data key.
 
         :param caller_node: caller basic block
@@ -258,7 +258,7 @@ class Nvram(CPF):
         """
         Run def-use analysis to find the data-key
 
-        :param caller_node: node calling an environment function
+        :param caller_node: node calling an nvram function
         :param role_function_info: role function info
         :return: None
         """
@@ -313,13 +313,13 @@ class Nvram(CPF):
                         self._name_funs.append(c.successors[0].name)
 
         else:
-            raise Exception("Envirnoment cpf: Parameters not in registers, implement me")
+            raise Exception("Nvram cpf: Parameters not in registers, implement me")
 
     def _record_role_data_key(self, caller_node, role_function_info):
         """
         Records a role data key.
 
-        :param caller_node: node calling an environment function
+        :param caller_node: node calling an nvram function
         :param role_function_info:  role function info
         :return: None
         """
