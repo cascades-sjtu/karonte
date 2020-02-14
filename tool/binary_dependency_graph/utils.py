@@ -18,7 +18,7 @@ from taint_analysis.utils import get_ord_arguments_call, get_any_arguments_call,
 MIN_STR_LEN = 3
 STR_LEN = 255
 ALLOWED_CHARS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-/_'
-EXTENDED_ALLOWED_CHARS = ALLOWED_CHARS + "%,.;+=_)(*&^%$#@!~`|<>{}[]"
+EXTENDED_ALLOWED_CHARS = ALLOWED_CHARS + "%,.;+=_)(*&^%$#@!~`|<>{}[] "
 SEPARATOR_CHARS = ('-', '_')
 
 # taint stuff
