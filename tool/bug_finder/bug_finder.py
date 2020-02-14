@@ -610,7 +610,7 @@ class BugFinder:
             # analyze parents
             if self._analyze_parents:
                 parent_name = parent.bin.split('/')[-1]
-                log.info("Analyzing %s" % parent_name)
+                log.info("Analyzing parents %s" % parent_name)
                 for s_addr, s_refs_info in parent.role_info.items():
                     for info in s_refs_info:
                         if info in analyzed_dk[parent]:
@@ -626,7 +626,7 @@ class BugFinder:
                 # analyze children
                 for child in self._bdg.graph[parent]:
                     child_name = child.bin.split('/')[-1]
-                    log.info("Analyzing %s" % child_name)
+                    log.info("Analyzing children %s" % child_name)
 
                     if child not in worklist:
                         worklist.append(child)
@@ -651,7 +651,7 @@ class BugFinder:
             log.info("Analyzing orphan nodes")
             max_size = size_analysis.MAX_BUF_SIZE
             for n in self._bdg.orphans:
-                log.info("Analyzing %s" % n.bin)
+                log.info("Analyzing orphan %s" % n.bin)
                 if n not in analyzed_dk:
                     analyzed_dk[n] = []
 

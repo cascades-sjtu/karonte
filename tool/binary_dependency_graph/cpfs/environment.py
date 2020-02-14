@@ -163,7 +163,7 @@ class Environment(CPF):
         
         self._binaries_strings[b] = []
         try:
-            p = angr.Project(b)
+            p = angr.Project(b,auto_load_libs=False) # originaly True here, for speed
             cfg = p.analyses.CFG()
         except TimeOutException:
             raise
