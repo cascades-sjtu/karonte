@@ -1,0 +1,1 @@
+{"bin": ["./test/usrinp"], "pickle_parsers": "./pickles/parser/test4.pk","stats": "False", "data_keys": [], "base_addr": "", "eg_source_addr": "", "fw_path": "./test", "angr_explode_bins": ["openvpn", "wpa_supplicant", "vpn", "dns", "ip", "log", "qemu-arm-static"], "var_ord": [""], "glob_var": [], "arch": "", "only_string": "False"}
